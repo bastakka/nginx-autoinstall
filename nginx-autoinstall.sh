@@ -149,6 +149,9 @@ case $OPTION in
 		if [[ $MODSEC == 'y' ]]; then
 			read -rp "       Enable nginx ModSecurity? [y/n]: " -e -i n MODSEC_ENABLE
 		fi
+		while [[ $KEEPSRC != "y" && $KEEPSRC != "n" ]]; do
+			read -rp "       Keep sources around? [y/n]: " -e -i n KEEPSRC
+		done
 		if [[ $HTTP3 != 'y' ]]; then
 			echo ""
 			echo "Choose your OpenSSL implementation:"
@@ -184,7 +187,9 @@ case $OPTION in
 
 	# Cleanup
 	# The directory should be deleted at the end of the script, but in case it fails
-	rm -r /usr/local/src/nginx/ >>/dev/null 2>&1
+	if [[ $KEEPSRC != "y" ]]; then
+		rm -r /usr/local/src/nginx/ >>/dev/null 2>&1
+	fi
 	mkdir -p /usr/local/src/nginx/modules
 
 	# Dependencies
@@ -336,7 +341,7 @@ case $OPTION in
 
 	# Download and extract of Nginx source code
 	cd /usr/local/src/nginx/ || exit 1
-	wget -qO- http://nginx.org/download/nginx-${NGINX_VER}.tar.gz | tar zxf -
+	wget -qO- https://nginx.org/download/nginx-${NGINX_VER}.tar.gz | tar zxf -
 	cd nginx-${NGINX_VER} || exit 1
 
 	# As the default nginx.conf does not work, we download a clean and working conf from my GitHub.
@@ -534,7 +539,7 @@ case $OPTION in
 		)
 	fi
 
-	# Cloudflare's Cloudflare's full HPACK encoding patch
+	# Cloudflare's full HPACK encoding patch
 	if [[ $HPACK == 'y' ]]; then
 		if [[ $HTTP3 == 'n' ]]; then
 			# Working Patch from https://github.com/hakasenyang/openssl-patch/issues/2#issuecomment-413449809
@@ -604,7 +609,9 @@ case $OPTION in
 	fi
 
 	# Removing temporary Nginx and modules files
-	rm -r /usr/local/src/nginx
+	if [[ $KEEPSRC != "y" ]]; then
+		rm -r /usr/local/src/nginx
+	fi
 
 	# We're done !
 	echo "Installation done."
