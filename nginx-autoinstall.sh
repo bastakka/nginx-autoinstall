@@ -526,7 +526,7 @@ case $OPTION in
 		patch -p01 </usr/local/src/nginx/modules/quiche/extras/nginx/nginx-1.16.patch
 
 		# Apply patch for nginx > 1.19.7
-		wget https://raw.githubusercontent.com/angristan/nginx-autoinstall/master/patches/nginx-http3-1.19.7.patch -O nginx-http3.patch
+		wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/patches/nginx-http3-1.19.7.patch -O nginx-http3.patch
 		patch -p01 <nginx-http3.patch
 
 		NGINX_OPTIONS=$(
