@@ -1,4 +1,4 @@
-![NGiNX Logo](Nginx_Logo.png "NGiNX Logo")
+# ![NGiNX Logo](Nginx_Logo.png "NGiNX Logo")
 
 # nginx-autoinstall
 
