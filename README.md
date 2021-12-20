@@ -61,7 +61,7 @@ You will be able to:
 
 Just follow the question!
 
-You can check [configuration examples](https://github.com/angristan/nginx-autoinstall/tree/master/conf) for the custom modules.
+You can check [configuration examples](https://github.com/bastakka/nginx-autoinstall/tree/master/conf) for the custom modules.
 
 ## Headless use
 
