@@ -349,7 +349,7 @@ case $OPTION in
 	if [[ ! -e /etc/nginx/nginx.conf ]]; then
 		mkdir -p /etc/nginx
 		cd /etc/nginx || exit 1
-		wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx.conf
+		wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/conf/nginx.conf
 	fi
 	cd /usr/local/src/nginx/nginx-${NGINX_VER} || exit 1
 
@@ -527,7 +527,7 @@ case $OPTION in
 
 
 		# Apply patch for nginx > 1.19.7 (source: https://github.com/cloudflare/quiche/issues/936#issuecomment-857618081)
-		wget https://raw.githubusercontent.com/angristan/nginx-autoinstall/master/patches/nginx-http3-1.19.7.patch -O nginx-http3.patch
+		wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/patches/nginx-http3-1.19.7.patch -O nginx-http3.patch
 		patch -p01 <nginx-http3.patch
 
 		NGINX_OPTIONS=$(
@@ -548,7 +548,7 @@ case $OPTION in
 
 		else
 			# Same patch as above but fixed conflicts with the HTTP/3 patch
-			wget https://raw.githubusercontent.com/angristan/nginx-autoinstall/master/patches/nginx_hpack_push_with_http3.patch -O nginx_http2_hpack.patch
+			wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/patches/nginx_hpack_push_with_http3.patch -O nginx_http2_hpack.patch
 		fi
 		patch -p1 <nginx_http2_hpack.patch
 
@@ -574,14 +574,14 @@ case $OPTION in
 	# Using the official systemd script and logrotate conf from nginx.org
 	if [[ ! -e /lib/systemd/system/nginx.service ]]; then
 		cd /lib/systemd/system/ || exit 1
-		wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx.service
+		wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/conf/nginx.service
 		# Enable nginx start at boot
 		systemctl enable nginx
 	fi
 
 	if [[ ! -e /etc/logrotate.d/nginx ]]; then
 		cd /etc/logrotate.d/ || exit 1
-		wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/conf/nginx-logrotate -O nginx
+		wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/conf/nginx-logrotate -O nginx
 	fi
 
 	# Nginx's cache directory is not created by default
@@ -664,7 +664,7 @@ case $OPTION in
 	exit
 	;;
 3) # Update the script
-	wget https://raw.githubusercontent.com/Angristan/nginx-autoinstall/master/nginx-autoinstall.sh -O nginx-autoinstall.sh
+	wget https://raw.githubusercontent.com/bastakka/nginx-autoinstall/master/nginx-autoinstall.sh -O nginx-autoinstall.sh
 	chmod +x nginx-autoinstall.sh
 	echo ""
 	echo "Update done."
