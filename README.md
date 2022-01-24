@@ -1,6 +1,5 @@
-![NGiNX Logo](Nginx_Logo.png "NGiNX Logo")
-
 # nginx-autoinstall
+![NGiNX Logo](Nginx_Logo.png "NGiNX Logo")
 
 Compile and install NGINX from source with optional features, modules and patches.
 
