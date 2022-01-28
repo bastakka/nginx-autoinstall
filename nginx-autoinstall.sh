@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Define versions
-NGINX_MAINLINE_VER=1.21.2
+NGINX_MAINLINE_VER=1.21.6
 NGINX_STABLE_VER=1.20.1
 LIBRESSL_VER=3.3.1
 OPENSSL_VER=1.1.1l
@@ -532,7 +532,7 @@ case $OPTION in
 
 		NGINX_OPTIONS=$(
 			echo "$NGINX_OPTIONS"
-			echo --with-openssl=/usr/local/src/nginx/modules/quiche/deps/boringssl --with-quiche=/usr/local/src/nginx/modules/quiche
+			echo --with-openssl=/usr/local/src/nginx/modules/quiche/quiche/deps/boringssl --with-quiche=/usr/local/src/nginx/modules/quiche
 		)
 		NGINX_MODULES=$(
 			echo "$NGINX_MODULES"
