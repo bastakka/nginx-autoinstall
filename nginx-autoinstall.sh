@@ -461,7 +461,7 @@ case $OPTION in
 		git clone --depth 1 --quiet https://github.com/aperezdc/ngx-fancyindex.git /usr/local/src/nginx/modules/fancyindex
 		NGINX_MODULES=$(
 			echo "$NGINX_MODULES"
-			echo --add-module=/usr/local/src/nginx/modules/fancyindex
+			echo --add-module=/usr/local/src/nginx/modules/fancyindex --with-http_addition_module
 		)
 	fi
 
