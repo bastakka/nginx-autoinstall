@@ -30,7 +30,7 @@ The script might work on ARM-based architectures, but it's only being regularly 
 - [ngx_pagespeed](https://github.com/pagespeed/ngx_pagespeed): Google performance module
 - [ngx_brotli](https://github.com/google/ngx_brotli): Brotli compression algorithm
 - [ngx_headers_more](https://github.com/openresty/headers-more-nginx-module): Custom HTTP headers
-- [ngx_http_geoip2_module](https://github.com/leev/ngx_http_geoip2_module) with [libmaxminddb](https://github.com/maxmind/libmaxminddb) and [GeoLite2 databases](https://dev.maxmind.com/geoip/geoip2/geolite2/) ⚠️ currently broken, see [#128](https://github.com/angristan/nginx-autoinstall/issues/128)
+- [ngx_http_geoip2_module](https://github.com/leev/ngx_http_geoip2_module) with [libmaxminddb](https://github.com/maxmind/libmaxminddb) and [GeoLite2 databases](https://dev.maxmind.com/geoip/geoip2/geolite2/) ⚠️ Requires license key
 - [ngx_cache_purge](https://github.com/FRiCKLE/ngx_cache_purge): Purge content from FastCGI, proxy, SCGI and uWSGI caches
 - [ngx-fancyindex](https://github.com/aperezdc/ngx-fancyindex) : fancy file listings
 - [nginx-dav-ext-module](https://github.com/arut/nginx-dav-ext-module): WebDAV PROPFIND, OPTIONS, LOCK, UNLOCK support)
@@ -41,6 +41,16 @@ The script might work on ARM-based architectures, but it's only being regularly 
 - [nginx_substitutions_filter](https://github.com/yaoweibin/ngx_http_substitutions_filter_module): regular expression and fixed string substitutions for nginx
 - [RTMP module](https://github.com/arut/nginx-rtmp-module) (NGINX-based Media Streaming Server)
 - [nginx-ultimate-bad-bot-blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker): Bad Bot and User-Agent Blocker, Spam Referrer Blocker, Anti DDOS, Bad IP Blocker and Wordpress Theme Detector Blocker
+
+#### Cache Modules
+
+- [redis2-nginx-module](https://github.com/openresty/redis2-nginx-module) : Nginx upstream module for the Redis 2.0 protocol
+- [ngx_http_redis](https://www.nginx.com/resources/wiki/modules/redis/) : The nginx HTTP redis module for caching with redis
+- [srcache-nginx-module](https://github.com/openresty/srcache-nginx-module) : Transparent subrequest-based caching layout for arbitrary nginx locations
+- [set-misc-nginx-module](https://github.com/openresty/set-misc-nginx-module) : Various set_xxx directives added to nginx's rewrite module (md5/sha1, sql/json quoting, and many more)
+- [echo-nginx-module](https://github.com/openresty/echo-nginx-module) : Brings "echo", "sleep", "time", "exec" and more shell-style goodies to Nginx config file.
+  - Required to set up [Redis with conditional purging](https://easyengine.io/wordpress-nginx/tutorials/single-site/redis_cache-with-conditional-purging/)
+  - Install Redis with ```apt install redis-{tools,server}```
 
 ## Usage
 
@@ -77,6 +87,16 @@ To install Nginx mainline with Brotli:
 HEADLESS=y \
 NGINX_VER=MAINLINE \
 BROTLI=y \
+./nginx-autoinstall.sh
+```
+
+To install with Geoip:
+
+```sh
+HEADLESS=y \
+GEOIP=y \
+GEOIP2_ACCOUNT_ID=YOUR_ACCOUNT_ID_HERE \
+GEOIP2_LICENSE_KEY=YOUR_LICENSE_KEY_HERE \
 ./nginx-autoinstall.sh
 ```
 
